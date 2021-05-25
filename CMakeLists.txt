@@ -30,6 +30,8 @@ endif ()
 # Vulkan
 find_package(Vulkan REQUIRED)
 
+find_package(Assimp REQUIRED)
+
 # Shader Manager
 set(SHADERMANAGER_SOURCES
         include/shadermanager/shadermanager.h
@@ -127,6 +129,7 @@ add_library(${MODELLIB_NAME} OBJECT ${MODELLIB_SOURCES})
 target_include_directories(${MODELLIB_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include/)
 target_include_directories(${MODELLIB_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include/modelloader)
 target_link_libraries(${MODELLIB_NAME} PUBLIC ${SCENELIB_NAME})
+target_link_libraries(${MODELLIB_NAME} PUBLIC ${ASSIMP_LIBRARIES})
 
 set(TEXTURELIB_SOURCES
         include/texturemanager/texturemanager.h

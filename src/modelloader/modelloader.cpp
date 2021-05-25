@@ -77,6 +77,13 @@ bool Model::loadModel(const std::string& modelFile, const std::string& mtlPath, 
     std::vector<tinyobj::material_t> materials;
     std::string warn, err;
 
+    const aiScene* scene = aiImportFile(modelFile.c_str(),
+                                        aiProcess_CalcTangentSpace |
+                                            aiProcess_Triangulate |
+                                            aiProcess_JoinIdenticalVertices |
+                                            aiProcess_FlipUVs |
+                                            aiProcess_SortByPType);
+
     bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, modelFile.c_str(), mtlPath.c_str(), true);
     if (!ret)
     {
